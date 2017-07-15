@@ -11,14 +11,14 @@ import java.util.Map;
  */
 @Controller
 public class LoginController {
-    @Value("${welcome.message:test}")
-    private String message = "Hello World";
-
-    @RequestMapping("/")
-    public String welcome(Map<String, Object> model) {
-        model.put("message", this.message);
-
-        return "welcome";
-    }
+//    @Value("${welcome.message:test}")
+//    private String message = "Hello World";
+//
+//    @RequestMapping("/")
+//    public String welcome(Map<String, Object> model) {
+//        model.put("message", this.message);
+//
+//        return "welcome";
+//    }
 
 }
