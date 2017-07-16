@@ -1,25 +1,34 @@
 $(document).ready(function () {
-    $.ajax({
-        type: 'GET',
-        url: "posts/alex",
-        contentType: "application/json",
-        dataType: "json",
-        success: function (resultData) {
-
-            for (i = 0; i < resultData.length; i++) {
-                resultData[i].recid = i;
-            }
-
-            createGrid(resultData)
-        }
-    });
+    reloadPosts();
 
     $('#callAddPostBtn').click(function (el) {
         $('#createPostPopup').w2popup();
     });
 
     $('#createPostBtn').click(function (el) {
-        alert('Post is added!')
+
+        title = $('#postTitle').val();
+        postContent = $('#postContent').val();
+
+        post = {
+            name: title,
+            content: postContent
+        };
+
+        $.ajax({
+            type: 'POST',
+            url: "posts/post",
+            async: false,
+            contentType: "application/json",
+            dataType: "json",
+            data: JSON.stringify(post),
+            success: function (resultData) {
+                alert(resultData + ' Post is added!');
+                reloadPosts();
+                w2popup.close()
+            }
+        });
+
     });
 
     function createGrid(posts) {
@@ -34,6 +43,23 @@ $(document).ready(function () {
                 {field: 'pubDate', caption: 'Date', size: '120px'}
             ],
             records: posts
+        });
+    }
+
+    function reloadPosts() {
+        $.ajax({
+            type: 'GET',
+            url: "posts/alex",
+            contentType: "application/json",
+            dataType: "json",
+            success: function (resultData) {
+
+                for (i = 0; i < resultData.length; i++) {
+                    resultData[i].recid = i;
+                }
+
+                createGrid(resultData)
+            }
         });
     }
 });
