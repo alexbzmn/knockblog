@@ -8,11 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.security.Principal;
 import java.util.List;
 
 /**
@@ -42,9 +41,9 @@ public class PostController {
             method = RequestMethod.POST)
     @ResponseBody
     public int post(HttpServletRequest request, @RequestBody Post post) {
-        Principal user = request.getUserPrincipal();
-        if (user != null) {
-            post.setUserName(user.getName());
+        String userName = request.getRemoteUser();
+        if (!StringUtils.isEmpty(userName)) {
+            post.setUserName(userName);
         }
 
         return postDao.insert(post);

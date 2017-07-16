@@ -1,7 +1,11 @@
 h1 {
-    color: #0000FF;
+    color: rgba(66, 65, 66, 0.78);
 }
 
 h2 {
     color: #FF0020;
+}
+
+#menu {
+    display: inline-block;
 }

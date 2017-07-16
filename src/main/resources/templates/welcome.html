@@ -21,11 +21,11 @@
 <nav class="navbar navbar-inverse">
     <div class="container">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">Spring Boot</a>
+            <a class="navbar-brand" href="#">KnockBlog</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
+                <li class="active"><a href="#">My Posts</a></li>
                 <li><a href="#about">About</a></li>
             </ul>
         </div>
@@ -34,11 +34,44 @@
 
 
 <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
-<form th:action="@{/logout}" method="post">
-    <input type="submit" value="Sign Out"/>
-</form>
+<div id="menu">
+    <form th:action="@{/logout}" method="post">
+        <input class="btn" type="submit" value="Sign Out"/>
+    </form>
 
-<div id="grid" style="width: 100%; height: 250px;"></div>
+    <button class="btn" id="callAddPostBtn" name="save">Add new post</button>
+</div>
+
+
+<div id="createPostPopup" style="display: none; width: 650px; height: 400px; overflow: auto">
+    <div rel="title">
+        Create a Post
+    </div>
+    <div rel="body">
+        <div style="padding: 10; font-size: 11px; line-height: 150%;">
+            <div class="w2ui-field w2ui-span8" style="clear: both">
+                <label>Post Title</label>
+                <div>
+                    <input name="field_text" type="text" maxlength="100" style="width: 250px !important;" title=""/>
+                </div>
+            </div>
+
+            <div class="w2ui-field w2ui-span8" style="clear: both">
+                <label>Content</label>
+                <div>
+                    <textarea name="field_textarea" type="text"
+                              style="width: 450px; height: 80px; resize: none"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div rel="buttons">
+        <button class="btn" id="createPostBtn">Create</button>
+    </div>
+</div>
+
+
+<div id="posts" style="width: 100%; height: 250px;"></div>
 
 </body>
 </html>
