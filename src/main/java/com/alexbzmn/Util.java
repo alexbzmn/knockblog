@@ -28,4 +28,8 @@ public final class Util {
 
         return new Date();
     }
+
+    public static String dateToStr(Date date) {
+        return format.format(date);
+    }
 }

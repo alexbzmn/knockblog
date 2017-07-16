@@ -12,16 +12,12 @@ import java.util.Date;
  */
 public class Post {
 
-    private Integer id;
+    private String id;
     private String name;
     private String content;
     private Date pubDate;
     private String userName;
 
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public void setName(String name) {
         this.name = name;
@@ -35,9 +31,12 @@ public class Post {
         this.pubDate = pubDate;
     }
 
-
-    public Integer getId() {
+    public String getId() {
         return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -66,7 +65,7 @@ public class Post {
             Post post = new Post();
 
             post.setContent(rs.getString("content"));
-            post.setId(rs.getInt("post_id"));
+            post.setId(rs.getString("post_id"));
             post.setName(rs.getString("name"));
             post.setUserName(rs.getString("username"));
 
