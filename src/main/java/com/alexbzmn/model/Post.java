@@ -1,5 +1,10 @@
 package com.alexbzmn.model;
 
+import com.alexbzmn.Util;
+import org.springframework.jdbc.core.RowMapper;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Date;
 
 /**
@@ -53,5 +58,23 @@ public class Post {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public static class PostRowMapper implements RowMapper<Post> {
+
+        public Post mapRow(ResultSet rs, int rowNum) throws SQLException {
+            Post post = new Post();
+
+            post.setContent(rs.getString("content"));
+            post.setId(rs.getInt("post_id"));
+            post.setName(rs.getString("name"));
+            post.setUserName(rs.getString("username"));
+
+            String pubDate = rs.getString("pub_date");
+            post.setPubDate(Util.strToDate(pubDate));
+
+            return post;
+        }
+
     }
 }
