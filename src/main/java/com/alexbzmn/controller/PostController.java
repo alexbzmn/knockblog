@@ -10,7 +10,7 @@ import java.util.Map;
  * Created by User on 7/15/2017.
  */
 @Controller
-public class LoginController {
+public class PostController {
 //    @Value("${welcome.message:test}")
 //    private String message = "Hello World";
 //
