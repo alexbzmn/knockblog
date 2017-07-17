@@ -47,9 +47,11 @@ $(document).ready(function () {
     }
 
     function reloadPosts() {
+        var userName = $('#userName')[0].textContent;
+
         $.ajax({
             type: 'GET',
-            url: "posts/alex",
+            url: "posts/" + userName,
             contentType: "application/json",
             dataType: "json",
             success: function (resultData) {
